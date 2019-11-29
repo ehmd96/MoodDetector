@@ -28,7 +28,6 @@ for emotion in EMOTIONS:
         emotion = "Pas content"
 """
 
-
 #df = frameReset()
 
 # Lancement de la capture webcam
@@ -89,13 +88,12 @@ while True:
     #Appuie sur la barre d'espace
     k = cv2.waitKey(1) & 0xFF
     if k == 32:
-        global realMood
         realMood = label
-        print("Veuillez appuyer la touche 'Y' pour confirmer l'humeur: "+label)
+        print("Veuillez appuyer la touche 'Y' pour confirmer l'humeur: "+realMood)
     if k == ord('y'):
         frameUpdate(day, realMood)
         #frameUpdate(day, label)
-        print("Humeur'"+label+"'confirmée pour votre "+day)
+        print("Humeur'"+realMood+"'confirmée pour votre "+day)
     if k == ord('q'):
         break
 

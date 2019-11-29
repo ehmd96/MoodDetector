@@ -1,11 +1,12 @@
 import csv
-from datetime import date
+import datetime
 import calendar
 import locale
 import pandas as pd
 
 locale.setlocale(locale.LC_TIME, 'fr_FR.UTF-8')
-my_date = date.today()
+my_date = datetime.datetime.now()
+#week = date(my_date).isocalendar()[1]
 day = calendar.day_name[my_date.weekday()]
 
 score = [0, 5, 10]
@@ -38,17 +39,16 @@ def frameUpdate(day,mood):
         #df = pd.read_csv('doc/Week_Template.csv', index_col='Day')
 
     df = pd.read_csv('doc/data.csv', index_col='Day')
-    if mood.lower() == 'Content':
+    if mood.lower() == 'content':
         score = 10
-    elif mood.lower() == 'Couci-couca':
+    elif mood.lower() == 'couci-couca':
         score = 5
-    else:
+    elif mood.lower() == 'pas content':
         score = 0
         value = ""
         while not value:
             value = input("Veuillez insérer un commentaire :(")
-
-        df.at[day, 'Comment'] = value
+            df.at[day, 'Comment'] = value
 
     df.at[day, 'Score'] = score
     df.at[day, 'Mood'] = mood
@@ -56,4 +56,5 @@ def frameUpdate(day,mood):
     frameSave(df)
 
 
+#print(week)
 #frameUpdate(day, 'Mecontent')

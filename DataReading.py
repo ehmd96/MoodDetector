@@ -5,10 +5,11 @@ x = []
 y = []
 
 with open('doc/data.csv', 'r') as csvfile:
-    plots = csv.reader(csvfile, delimiter=';')
+    plots = csv.reader(csvfile, delimiter=',')
     for row in plots:
-        x.append(row[0])
-        y.append(row[2])
+        if row[0] != 'Day' and row[1] != 'Score':
+            x.append(row[0])
+            y.append(row[1])
 
 plt.plot(x, y, marker='o', label='Mood')
 plt.xlabel('Jours Ouvrés')
