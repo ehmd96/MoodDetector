@@ -5,6 +5,7 @@ import cv2
 from keras.models import load_model
 import numpy as np
 from DataWriting import *
+from DataReading import *
 
 # Chemin du model de détection facial
 detection_model_path = 'model/haarcascade_frontalface_default.xml'
@@ -15,10 +16,10 @@ emotion_model_path = 'model/_mini_XCEPTION.66-0.64.hdf5'
 face_detection = cv2.CascadeClassifier(detection_model_path)
 emotion_classifier = load_model(emotion_model_path, compile=False)
 #Listes des émotions existantes dans le dataset
-EMOTIONS = ["angry", "disgust", "scared", "happy", "sad", "surprised",
-            "neutral"]
+#EMOTIONS = ["angry", "disgust", "scared", "happy", "sad", "surprised",
+#            "neutral"]
 
-EMOTIONS = ["Pas content", "Pas content", "Pas content", "Content", "Pas content", "Pas content",
+EMOTIONS = ["Pas content", "Pas content", "Pas content", "Content", "Couci-couca", "Pas content",
             "Couci-couca"]
 
 
@@ -94,6 +95,7 @@ while True:
         frameUpdate(day, realMood)
         #frameUpdate(day, label)
         print("Humeur'"+realMood+"'confirmée pour votre "+day)
+        weekly_curve(day)
     if k == ord('q'):
         break
 

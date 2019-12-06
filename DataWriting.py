@@ -17,15 +17,20 @@ mood = ['Mécontent', 'Moyen', 'Heureux']
 def frameReset():
     #df = pd.read_csv('doc/Week_Template.csv')
     data = {
-        'Day' : ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi'],
+        'Day': ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi'],
         'Score': [0, 0, 0, 0, 0],
         'Mood': ['Empty', 'Empty', 'Empty', 'Empty', 'Empty'],
         'Comment': ['Empty', 'Empty', 'Empty', 'Empty', 'Empty']
     }
     #df = pd.DataFrame(index=['Monday','Tuesday','Wednesday','Thursday','Friday'], columns=['Day','Score', 'Mood'])
-    df = pd.DataFrame(data, dtype=str)
+    df = pd.DataFrame(data, index="Day", dtype=str)
+    df.set_index('Day')
     #df.Mood.apply(str)
-    df.to_csv('doc/Week_Template.csv')
+    df.to_csv('doc/Week_Template.csv', sep=",", index_label='Day')
+    return df
+
+def weekTemp():
+    df = pd.read_csv('doc/Week_Template.csv', index_col='Day')
     return df
 
 
@@ -34,7 +39,7 @@ def frameSave(df):
 
 def frameUpdate(day,mood):
     if day.lower() == 'lundi':
-        df = frameReset()
+        df = weekTemp()
         frameSave(df)
         #df = pd.read_csv('doc/Week_Template.csv', index_col='Day')
 
@@ -56,5 +61,4 @@ def frameUpdate(day,mood):
     frameSave(df)
 
 
-#print(week)
-#frameUpdate(day, 'Mecontent')
+#frameUpdate(day, 'Pas content')
