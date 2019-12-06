@@ -46,8 +46,10 @@ def frameUpdate(day,mood):
     df = pd.read_csv('doc/data.csv', index_col='Day')
     if mood.lower() == 'content':
         score = 10
+        df.at[day, 'Comment'] = "Empty"
     elif mood.lower() == 'couci-couca':
         score = 5
+        df.at[day, 'Comment'] = "Empty"
     elif mood.lower() == 'pas content':
         score = 0
         value = ""
