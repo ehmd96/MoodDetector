@@ -1,0 +1,3 @@
+I used Facial Emotion Recognition 2013 as dataset to train my CNN architecture Model and got 0.64 accuracy.
+I grouped the initial 7 emotions in 3 emotions: Happy ("Content") - Neutral ("Couci-couca") - Sad ("Pas content").
+More details in the code (I commented in french. Can be easily translated)
